@@ -1,1 +1,14 @@
-
+version: '2'
+services:
+  postgres:
+    image: postgres:9.6  # this is one value, despite the colon (docker images are usually repo:tag format)
+    environment:
+      - POSTGRES_DB=lol
+    ports:
+      - 5432
+  web:
+    image: my-app:v1  # same as above
+    environment:
+      - MY_VAR=1
+    ports:
+      - 8000
