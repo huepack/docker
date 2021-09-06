@@ -13,6 +13,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends gnupg dirmngr &
 
 # add gosu for easy step-down from root
 # https://github.com/tianon/gosu/releases
+ENV MYSQL_ROOT_PASSWORD_FILE "/run/secrets/mysql.root.passwd"
+ENV MYSQL_PASSWORD_FILE "/run/secrets/mysql.user.passwd"
+ENV MYSQL_USER_FILE "/run/secrets/mysql.user.id"
 ENV GOSU_VERSION 1.12
 RUN set -eux; \
 	savedAptMark="$(apt-mark showmanual)"; \
