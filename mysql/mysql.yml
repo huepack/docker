@@ -4,20 +4,14 @@ version: '3.1'
 services:
 
   db:
-    image: mysql01
-    container_name: mysql_01
-    hostname: mysql_01
+    image: mysql
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD_FILE: "/run/secrets/mysql.root.passwd"
-      MYSQL_PASSWORD_FILE: "/run/secrets/mysql.user.passwd"
-      MYSQL_USER_FILE: "/run/secrets/mysql.user.id"
-    ports:
-      - 3306:3306
+      MYSQL_ROOT_PASSWORD: example
 
   adminer:
     image: adminer
     restart: always
     ports:
-      - "8080:8080"
+      - 8080:8080
