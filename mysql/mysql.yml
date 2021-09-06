@@ -11,7 +11,7 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD_FILE: "/run/secrets/mysql.root.passwd"
-      MYSQL_USER_PASSWORD_FILE: "/run/secrets/mysql.user.passwd"
+      MYSQL_PASSWORD_FILE: "/run/secrets/mysql.user.passwd"
       MYSQL_USER_FILE: "/run/secrets/mysql.user.id"
     ports:
       - 3306:3306
