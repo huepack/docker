@@ -1,4 +1,5 @@
 
+#
 # NOTE: THIS DOCKERFILE IS GENERATED VIA "apply-templates.sh"
 #
 # PLEASE DO NOT EDIT IT DIRECTLY.
@@ -13,9 +14,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends gnupg dirmngr &
 
 # add gosu for easy step-down from root
 # https://github.com/tianon/gosu/releases
-ENV MYSQL_ROOT_PASSWORD_FILE /run/secrets/mysql.root.passwd
-ENV MYSQL_PASSWORD_FILE /run/secrets/mysql.user.passwd
-ENV MYSQL_USER_FILE /run/secrets/mysql.user.id
 ENV GOSU_VERSION 1.12
 RUN set -eux; \
 	savedAptMark="$(apt-mark showmanual)"; \
@@ -90,8 +88,7 @@ RUN { \
 VOLUME /var/lib/mysql
 
 # Config files
-COPY secrets/ /run/secrets/
-# COPY config/ /etc/mysql/
+COPY config/ /etc/mysql/
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh # backwards compat
 ENTRYPOINT ["docker-entrypoint.sh"]
