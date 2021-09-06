@@ -15,3 +15,4 @@ services:
     restart: always
     ports:
       - 8880:8080
+      - 3306:3306
