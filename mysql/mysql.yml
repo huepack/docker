@@ -20,6 +20,6 @@ services:
     ports:
       - 8880:8080
     
- networks:
-   - mysql_net
+networks:
+  - mysql_net
       
