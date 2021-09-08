@@ -10,7 +10,7 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - mysql_volume: /var/lib/mysql
+      - "mysql_volume:/var/lib/mysql"
     environment:
       MYSQL_ROOT_PASSWORD: example
       
@@ -22,4 +22,6 @@ services:
     
 networks:
   - mysql_net
+volumes:
+  mysql_volume:
       
