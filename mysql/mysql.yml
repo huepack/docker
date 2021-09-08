@@ -11,6 +11,8 @@ services:
       - 3306:3306
     networks:
       - mysql_net
+    volumes:
+      - mysql_volume: /var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: example
       
