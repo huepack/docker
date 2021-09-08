@@ -9,8 +9,6 @@ services:
     restart: always
     ports:
       - 3306:3306
-    networks:
-      - mysql_net
     volumes:
       - mysql_volume: /var/lib/mysql
     environment:
@@ -21,6 +19,7 @@ services:
     restart: always
     ports:
       - 8880:8080
-    networks:
-      - mysql_net
+    
+ networks:
+   - mysql_net
       
