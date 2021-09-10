@@ -1,11 +1,10 @@
 FROM ubuntu:latest
-ARG DEBIAN_FRONTEND=noninteractive
-RUN apt update && apt install -y  openssh-server sudo iproute2 net-tools curl apache2
+RUN apt update && apt install -y  openssh-server sudo iproute2 net-tools curl 
 RUN useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1000 test
 RUN  echo 'test:test' | chpasswd
-COPY ./index.html /var/www/html/index.html
-RUN service apache2 start
+RUN service ssh start
+COPY ./authorized_keys /root/.ssh/
 RUN /bin/bash
-EXPOSE 22 80
-CMD ["apachectl", "-D", "FOREGROUND"]
+EXPOSE 22 
+ENTRYPOINT ["/usr/sbin/sshd", "-D"]
 
