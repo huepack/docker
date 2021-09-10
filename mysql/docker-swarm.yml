@@ -13,11 +13,11 @@ services:
       - "mysql_volume:/var/lib/mysql"
     networks:
       - mysql_net
-     deploy:
+    deploy:
        replicas: 2
        placement:
          constraints:
-           - "node.role==manager
+           - "node.role==manager"
     environment:
       MYSQL_ROOT_PASSWORD: example
       
