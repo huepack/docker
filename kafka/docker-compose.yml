@@ -2,21 +2,23 @@ version: "3.6"
 
 services:
   zookeeper:
-    image: docker.io/bitnami/zookeeper:3.7
+    image: docker.io/bitnami/zookeeper
     ports:
       - "2181:2181"
     deploy:
-      replicas: 2
+      placement:
+        constraints:
+          - "node.role==manager"
     volumes:
       - "zookeeper_data:/bitnami"
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
   kafka:
-    image: docker.io/bitnami/kafka:2
+    image: docker.io/bitnami/kafka
     ports:
       - "9092:9092"
     deploy:
-      replicas: 4
+      replicas: 6
     volumes:
       - "kafka_data:/bitnami"
     environment:
