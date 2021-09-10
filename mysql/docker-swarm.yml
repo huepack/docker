@@ -29,7 +29,7 @@ services:
     networks:
       - mysql_net
     deploy:
-      replicas: 3
+      replicas: 4
     
 networks:
   mysql_net:
