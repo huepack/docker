@@ -28,7 +28,7 @@ services:
            - "node.hostname==docker01"
     volumes:
       - "kafka_data:/bitnami"
-      - "./config/broker_1:/opt/bitnami/kafka/config"
+      - ./config/broker_1:/opt/bitnami/kafka/config:bind
          
   broker2:
     image: docker.io/bitnami/kafka
@@ -45,7 +45,7 @@ services:
            - "node.hostname==docker02"
     volumes:
       - "kafka_data:/bitnami"
-      - "./config/broker_2:/opt/bitnami/kafka/config"
+      - ./config/broker_2:/opt/bitnami/kafka/config:bind
   broker3:
     image: docker.io/bitnami/kafka
     ports:
@@ -61,7 +61,7 @@ services:
            - "node.hostname==docker03"
     volumes:
       - "kafka_data:/bitnami"
-      - "./config/broker_3:/opt/bitnami/kafka/config"
+      - ./config/broker_3:/opt/bitnami/kafka/config:bind
 
 volumes:
   zookeeper_data:
