@@ -16,7 +16,7 @@ services:
   broker1:
     extends:
       file: broker.yml
-        service: broker
+      service: broker
     deploy:
       placement:
         constraints: 
@@ -27,7 +27,7 @@ services:
   broker2:
     extends:
       file: broker.yml
-        service: broker
+      service: broker
     deploy:
       placement:
         constraints: 
@@ -38,7 +38,7 @@ services:
   broker3:
     extends:
       file: broker.yml
-        service: broker
+      service: broker
     deploy:
       placement:
         constraints: 
