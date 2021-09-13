@@ -13,22 +13,59 @@ services:
       - "zookeeper_data:/bitnami"
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
-  kafka:
-    image: docker.io/bitnami/kafka
-    ports:
-      - "9092:9092"
+  broker1:
+    extends:
+      file: broker.yml
+        service: broker
     deploy:
-      replicas: 6
+      placement:
+        constraints: 
+           - "node.hostname==docker01"
     volumes:
       - "kafka_data:/bitnami"
-    environment:
-      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
-      - ALLOW_PLAINTEXT_LISTENER=yes
-    depends_on:
-      - zookeeper
-
+      - "broker_1:/opt/bitnami/kafka/config
+  broker2:
+    extends:
+      file: broker.yml
+        service: broker
+    deploy:
+      placement:
+        constraints: 
+           - "node.hostname==docker02"
+    volumes:
+      - "kafka_data:/bitnami"
+      - "broker_2:/opt/bitnami/kafka/config 
+  broker3:
+    extends:
+      file: broker.yml
+        service: broker
+    deploy:
+      placement:
+        constraints: 
+           - "node.hostname==docker03"
+    volumes:
+      - "kafka_data:/bitnami"
+      - "broker_3 :/opt/bitnami/kafka/config
 volumes:
   zookeeper_data:
     driver: local
   kafka_data:
     driver: local
+  broker_1:
+  driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: ./config/broker_1
+  broker_2:
+  driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: ./config/broker_2
+  broker_3:
+  driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: ./config/broker_3
