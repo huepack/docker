@@ -30,38 +30,7 @@ services:
       - "kafka_data:/bitnami"
       - ./config/broker_1:/opt/bitnami/kafka/config:bind
          
-  broker2:
-    image: docker.io/bitnami/kafka
-    ports:
-      - "9092:9092"
-    environment:
-      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
-      - ALLOW_PLAINTEXT_LISTENER=yes
-    depends_on:
-      - zookeeper
-    deploy:
-      placement:
-        constraints: 
-           - node.hostname == docker02
-    volumes:
-      - "kafka_data:/bitnami"
-      - ./config/broker_2:/opt/bitnami/kafka/config:bind
-  broker3:
-    image: docker.io/bitnami/kafka
-    ports:
-      - "9092:9092"
-    environment:
-      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
-      - ALLOW_PLAINTEXT_LISTENER=yes
-    depends_on:
-      - zookeeper
-    deploy:
-      placement:
-        constraints: 
-           - node.hostname == docker03 
-    volumes:
-      - "kafka_data:/bitnami"
-      - ./config/broker_3:/opt/bitnami/kafka/config:bind
+
 
 volumes:
   zookeeper_data:
