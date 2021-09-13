@@ -13,7 +13,7 @@ services:
       - "zookeeper_data:/bitnami"
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
-  broker1:
+  broker:
     image: docker.io/bitnami/kafka
     ports:
        - "9092:9092"
@@ -23,15 +23,13 @@ services:
     depends_on:
       - zookeeper
     deploy:
+      replicas: 3
       placement:
         constraints: 
-           - node.hostname == docker01
+           - node.role==worker
     volumes:
       - "kafka_data:/bitnami"
-      - ./config/broker_1:/opt/bitnami/kafka/config:bind
-         
-
-
+     
 volumes:
   zookeeper_data:
   kafka_data:
