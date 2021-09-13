@@ -14,9 +14,14 @@ services:
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
   broker1:
-    extends:
-      file: broker.yml
-      service: broker
+    image: docker.io/bitnami/kafka
+    ports:
+       - "9092:9092"
+    environment:
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - ALLOW_PLAINTEXT_LISTENER=yes
+    depends_on:
+      - zookeeper
     deploy:
       placement:
         constraints: 
@@ -27,9 +32,14 @@ services:
         source: ./config/broker_1
         target: /opt/bitnami/kafka/config
   broker2:
-    extends:
-      file: broker.yml
-      service: broker
+    image: docker.io/bitnami/kafka
+    ports:
+      - "9092:9092"
+    environment:
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - ALLOW_PLAINTEXT_LISTENER=yes
+    depends_on:
+      - zookeeper
     deploy:
       placement:
         constraints: 
@@ -40,9 +50,14 @@ services:
         source: ./config/broker_2
         target: /opt/bitnami/kafka/config
   broker3:
-    extends:
-      file: broker.yml
-      service: broker
+    image: docker.io/bitnami/kafka
+    ports:
+      - "9092:9092"
+    environment:
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - ALLOW_PLAINTEXT_LISTENER=yes
+    depends_on:
+      - zookeeper
     deploy:
       placement:
         constraints: 
