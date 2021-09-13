@@ -24,8 +24,8 @@ services:
     volumes:
       - "kafka_data:/bitnami"
       - type: bind
-         source: ./config/broker_1
-         target: /opt/bitnami/kafka/config
+        source: ./config/broker_1
+        target: /opt/bitnami/kafka/config
   broker2:
     extends:
       file: broker.yml
@@ -37,8 +37,8 @@ services:
     volumes:
       - "kafka_data:/bitnami"
       - type: bind
-         source: ./config/broker_2
-         target: /opt/bitnami/kafka/config
+        source: ./config/broker_2
+        target: /opt/bitnami/kafka/config
   broker3:
     extends:
       file: broker.yml
@@ -50,8 +50,8 @@ services:
     volumes:
       - "kafka_data:/bitnami"
       - type: bind
-         source: ./config/broker_3
-         target: /opt/bitnami/kafka/config
+        source: ./config/broker_3
+        target: /opt/bitnami/kafka/config
 
 volumes:
   zookeeper_data:
