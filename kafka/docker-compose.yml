@@ -23,7 +23,9 @@ services:
            - "node.hostname==docker01"
     volumes:
       - "kafka_data:/bitnami"
-      - "broker_1:/opt/bitnami/kafka/config"
+      - type: bind
+         source: ./config/broker_1
+         target: /opt/bitnami/kafka/config
   broker2:
     extends:
       file: broker.yml
@@ -34,7 +36,9 @@ services:
            - "node.hostname==docker02"
     volumes:
       - "kafka_data:/bitnami"
-      - "broker_2:/opt/bitnami/kafka/config"
+      - type: bind
+         source: ./config/broker_2
+         target: /opt/bitnami/kafka/config
   broker3:
     extends:
       file: broker.yml
@@ -45,27 +49,10 @@ services:
            - "node.hostname==docker03"
     volumes:
       - "kafka_data:/bitnami"
-      - "broker_3:/opt/bitnami/kafka/config"
+      - type: bind
+         source: ./config/broker_3
+         target: /opt/bitnami/kafka/config
+
 volumes:
   zookeeper_data:
-    driver: local
   kafka_data:
-    driver: local
-  broker_1:
-    driver: local
-      driver_opts:
-        o: bind
-        type: none
-        device: ./config/broker_1
-  broker_2:
-    driver: local
-      driver_opts:
-        o: bind
-        type: none
-        device: ./config/broker_2
-  broker_3:
-    driver: local
-      driver_opts:
-        o: bind
-        type: none
-        device: ./config/broker_3
